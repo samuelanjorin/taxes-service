@@ -7,7 +7,7 @@ redisCache.addToCache()
 const { tax } = db
 
 async function getTaxById (id) {
-  return await findOne( { 
+  return await tax.findOne( { 
     where: {
       tax_id: id
      }
