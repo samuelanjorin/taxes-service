@@ -1,17 +1,17 @@
 /* eslint-disable camelcase */
-import isEmpty from 'lodash.isempty'
-import service from '../services/tax'
 import asyncF from '../middlewares/async'
 import globalFunc from '../utils/globalfunc'
 import constants from '../constants/index'
 import cache from '../utils/cache'
+import isEmpty from 'lodash.isempty'
+import service from '../services/tax'
 
 let field = 'tax_id'
 function getTaxes () {
   return asyncF(async (req, res) => {
     let value = await cache.checkCache(req.originalUrl)
     if(value !== null){
-      return res.json(value.data).status(constants.NETWORK_CODES.HTTP_SUCCESS)
+      return res.status(constants.NETWORK_CODES.HTTP_SUCCESS).json(value.data)
     }
     let taxes = await service.getTaxes()
     if (isEmpty(taxes)) {
@@ -22,7 +22,7 @@ function getTaxes () {
       })
     }
     cache.addToCache(req.originalUrl, {data: taxes}, constants.CACHE_TYPES.hour)
-    return res.json(taxes).status(constants.NETWORK_CODES.HTTP_SUCCESS)
+    return res.status(constants.NETWORK_CODES.HTTP_SUCCESS).json(taxes)
  
   })
 }
@@ -31,7 +31,7 @@ function getTaxes () {
   return asyncF(async (req, res) => {
     let value = await cache.checkCache(req.originalUrl)
     if(value !== null){
-      return res.json(value).status(constants.NETWORK_CODES.HTTP_SUCCESS)
+      return res.status(constants.NETWORK_CODES.HTTP_SUCCESS).json(value)
     }
     const { tax_id } = req.params;
     const parsedId = parseInt(tax_id, 10);
@@ -47,7 +47,7 @@ function getTaxes () {
     }
     
    cache.addToCache(req.originalUrl, tax, constants.CACHE_TYPES.hour)
-  return res.json(tax).status(constants.NETWORK_CODES.HTTP_SUCCESS)
+  return res.status(constants.NETWORK_CODES.HTTP_SUCCESS).json(tax)
 
    }
    return res.status(constants.NETWORK_CODES.HTTP_BAD_REQUEST).json({
