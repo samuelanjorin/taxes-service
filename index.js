@@ -14,7 +14,7 @@ app.use(morgan('combined', { 'stream': logger.stream }))
 routeDependencies(app)
 dotenv.config()
 
-const port = process.env.RACS_PORT || 7004
+const port = process.env.RACS_PORT || 7002
 
 app.listen(port, () => {
   logger.info(`Listening to port ${port}.......`)
