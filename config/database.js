@@ -2,7 +2,6 @@ import config from "./envconfig"
 import Sequelize from "sequelize"
 
 const dbConfig = config[ process.env.NODE_ENV ]
-console.log('env====>', process.env.NODE_ENV)
 // Option 1: Passing parameters separately
 const sequelize = new Sequelize(
   dbConfig.name,
