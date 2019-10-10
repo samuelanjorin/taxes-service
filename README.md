@@ -1,6 +1,7 @@
 # turing-taxes-service
 
-This is on one the services of Turing Eccomerce Microservices. 
+This is the taxes-service of Turing Eccomerce Microservices. 
+
 
 # Deployed on Port http://Host:7002
 
